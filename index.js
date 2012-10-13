@@ -54,6 +54,13 @@ function ElementSelector(options) {
     ? !!options.enabled
     : true
 
+  this.useDefaultStyles = options.hasOwnProperty('useDefaultStyles')
+    ? !!options.useDefaultStyles
+    : true
+
+  if (this.useDefaultStyles) {
+    classes(document.body).add('element-selector')
+  }
 
   this.highlighted = null
   this.highlight = highlight.bind(this)

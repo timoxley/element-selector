@@ -22,6 +22,7 @@ var elementSelector = ElementSelector();
   - [selectEvent](#selectEvent)
   - [selectedClass](#selectedClass)
   - [highlightedClass](#highlightedClass)
+  - [useStyluseDefaultStylese](#useDefaultStyles)
  
 <a name="selector" />
 ### selector
@@ -60,6 +61,20 @@ var elementSelector = ElementSelector({
 // elements will get class "glow" when they are highlighted
 var elementSelector = ElementSelector({
   highlightedClass: "glow"
+})
+```
+
+<a name="useDefaultStyles" />
+### useDefaultStyles
+Disable this if you wish to disable the default styles.
+Adds `element-selector` class to `document.body` if `true`.
+Defaults to `true`.
+
+```js
+// Disable default styles so you can
+// use custom .selected and .highlighted css.
+var elementSelector = ElementSelector({
+  useDefaultStyles: false
 })
 ```
 
