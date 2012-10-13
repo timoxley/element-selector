@@ -1,8 +1,8 @@
 {
-  "name": "mouse-select",
-  "repo": "timoxley/mouse-select",
-  "description": "Use mouse to select html elements.",
-  "version": "0.0.4",
+  "name": "element-selector",
+  "repo": "timoxley/element-selector",
+  "description": "Select DOM elements with the mouse.",
+  "version": "0.0.5",
   "keywords": [],
   "dependencies": {
     "component/classes": "*",
@@ -15,6 +15,6 @@
     "index.js"
   ],
   "styles": [
-    "mouse-select.css"
+    "element-selector.css"
   ]
 }

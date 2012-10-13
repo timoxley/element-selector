@@ -2,7 +2,7 @@
 <head>
   <link rel="stylesheet" href="/build/build.css" type="text/css" />
 </head>
-<body class='mouse-select'>
+<body class='element-selector'>
   <p>
   Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Maecenas egestas ultrices magna, sed rutrum erat condimentum quis. Integer in faucibus urna.
   </p>
@@ -14,15 +14,12 @@
   </ul>
   <script src="/build/build.js"></script>
   <script>
-    var MouseSelect = require('mouse-select')
-    var mouseSelect = MouseSelect({
-      selectEvent: 'dblclick'
-    })
-
-    mouseSelect.on('select', function(el) {
+    var ElementSelector = require('element-selector')
+    var elementSelector = ElementSelector()
+    elementSelector.on('select', function(el) {
       console.log('selected', el)
     })
-    mouseSelect.on('deselect', function(el) {
+    elementSelector.on('deselect', function(el) {
       console.log('deselected', el)
     })
   </script>

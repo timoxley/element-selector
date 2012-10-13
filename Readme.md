@@ -1,19 +1,18 @@
+# Element Selector
 
-# mouse-select
-
-  Use mouse to highlight and select html elements.
+  Select DOM elements with the mouse.
 
 ## Installation
 
 ```
-$ component install timoxley/mouse-select
+$ component install timoxley/element-selector
 ```
 
 ## Example
 
 ```js
-var MouseSelect = require('mouse-select');
-var mouseSelect = MouseSelect();
+var ElementSelector = require('element-selector');
+var elementSelector = ElementSelector();
 
 ```
 
@@ -30,7 +29,7 @@ Only trigger select/highlight events on elements matching this selector.
 Defaults to `body *`.
 ```js
 // Only trigger on paragraphs inside #content
-var mouseSelect = MouseSelect({
+var elementSelector = ElementSelector({
   selector: "#content p"
 })
 ```
@@ -41,17 +40,16 @@ Mouse event to trigger selection. Must be one of `click`, `dblclick`,
 `mouseup` or `mousedown`. Defaults to `click`
 ```js
 // Trigger on 'mousedown' instead of 'click'
-var mouseSelect = MouseSelect({
+var elementSelector = ElementSelector({
   selectEvent: "mousedown"
 })
 ```
-
 
 <a name="selectedClass" />
 ### selectedClass
 ```js
 // elements will get class "editable" when they are highlighted 
-var mouseSelect = MouseSelect({
+var elementSelector = ElementSelector({
   highlightedClass: "editable"
 })
 ```
@@ -60,7 +58,7 @@ var mouseSelect = MouseSelect({
 ### highlightedClass
 ```js
 // elements will get class "glow" when they are highlighted
-var mouseSelect = MouseSelect({
+var elementSelector = ElementSelector({
   highlightedClass: "glow"
 })
 ```
@@ -77,18 +75,18 @@ Events will be one of the following:
   - highlight
   - dehighlight
 
-MouseSelect's event API is inherited from
+ElementSelector's event API is inherited from
 [component/emitter](https://github.com/component/emitter).
 
 ### Example
 
 ```js
 
-mouseSelect.on('select', function(el) {
+elementSelector.on('select', function(el) {
   console.log('element selected', el)
 })
 
-mouseSelect.once('dehighlight', function(el) {
+elementSelector.once('dehighlight', function(el) {
   console.log('element dehighlighted', el)
 })
 
@@ -101,20 +99,20 @@ mouseSelect.once('dehighlight', function(el) {
 
 <a name="disable" />
 ### disable()
-Disables the mouseSelect instance. No more events will be fired, other
+Disables the elementSelector instance. No more events will be fired, other
 than those to deselect/dehighlight the currently selected/highlighted
 elements.
 
 ```
-  mouseSelect.disable()
+  elementSelector.disable()
 ```
 
 <a name="enable" />
 ### enable()
-Reenables a mouseSelect instance.
+Reenables a elementSelector instance.
 
 ```
-  mouseSelect.enable()
+  elementSelector.enable()
 ```
 
 ## Compatibility

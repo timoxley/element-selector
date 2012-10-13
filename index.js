@@ -30,12 +30,12 @@ var initialize = function() {
 }()
 
 module.exports = function(options) {
-  return new MouseSelect(options)
+  return new ElementSelector(options)
 }
 
-module.exports.MouseSelect = MouseSelect
+module.exports.ElementSelector = ElementSelector
 
-function MouseSelect(options) {
+function ElementSelector(options) {
   options = options || {}
   this.selector = options.selector || 'body *'
 
@@ -67,7 +67,7 @@ function MouseSelect(options) {
   bus.on('mouseout', this.dehighlight)
 }
 
-MouseSelect.prototype = {}
+ElementSelector.prototype = {}
 
 function disable() {
   this.dehighlight()
@@ -123,5 +123,5 @@ function deselect(el) {
 }
 
 
-Emitter(MouseSelect.prototype)
+Emitter(ElementSelector.prototype)
 

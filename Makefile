@@ -1,5 +1,4 @@
-
-build: components index.js mouse-select.css
+build: components index.js element-selector.css
 	@component build --dev
 
 components:
