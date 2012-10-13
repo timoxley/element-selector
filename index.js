@@ -80,10 +80,12 @@ function disable() {
   this.dehighlight()
   this.deselect()
   this.enabled = false
+  return this
 }
 
 function enable() {
   this.enabled = true
+  return this
 }
 
 function highlight(el) {
