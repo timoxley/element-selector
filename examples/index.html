@@ -15,7 +15,9 @@
   <script src="/build/build.js"></script>
   <script>
     var MouseSelect = require('mouse-select')
-    var mouseSelect = MouseSelect()
+    var mouseSelect = MouseSelect({
+      selectEvent: 'dblclick'
+    })
 
     mouseSelect.on('select', function(el) {
       console.log('selected', el)
