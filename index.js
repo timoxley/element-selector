@@ -24,6 +24,9 @@ var initialize = function() {
   document.addEventListener('mousedown', function(e) {
     bus.emit('mousedown', e.target)
   })
+  document.addEventListener('dblclick', function(e) {
+    bus.emit('dblclick', e.target)
+  })
 }()
 
 module.exports = function(options) {

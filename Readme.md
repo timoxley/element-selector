@@ -37,7 +37,7 @@ var mouseSelect = MouseSelect({
 
 <a name="selectEvent" />
 ### selectEvent 
-Mouse event to trigger selection. Must be one of `click`,
+Mouse event to trigger selection. Must be one of `click`, `dblclick`,
 `mouseup` or `mousedown`. Defaults to `click`
 ```js
 // Trigger on 'mousedown' instead of 'click'
