@@ -89,7 +89,7 @@ mouseSelect.on('select', function(el) {
   console.log('element selected', el)
 })
 
-mouseSelect.on('dehighlight', function(el) {
+mouseSelect.once('dehighlight', function(el) {
   console.log('element dehighlighted', el)
 })
 
