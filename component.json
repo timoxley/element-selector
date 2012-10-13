@@ -1,0 +1,20 @@
+{
+  "name": "mouse-select",
+  "repo": "timoxley/mouse-select-el",
+  "description": "Use mouse to select html elements",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/classes": "*",
+    "component/matches-selector": "*",
+    "component/emitter": "*",
+    "component/bus": "*"
+  },
+  "development": {},
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "mouse-select.css"
+  ]
+}

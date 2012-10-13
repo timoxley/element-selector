@@ -1,0 +1,28 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/build/build.css" type="text/css" />
+</head>
+<body class='mouse-select'>
+  <p>
+  Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Maecenas egestas ultrices magna, sed rutrum erat condimentum quis. Integer in faucibus urna.
+  </p>
+  <ul>
+    <li>Lorem</li>
+    <li>ipsum</li>
+    <li>dolor</li>
+    <li>sit</li>
+  </ul>
+  <script src="/build/build.js"></script>
+  <script>
+    var MouseSelect = require('mouse-select')
+    var mouseSelect = MouseSelect()
+
+    mouseSelect.on('select', function(el) {
+      console.log('selected', el)
+    })
+    mouseSelect.on('deselect', function(el) {
+      console.log('deselected', el)
+    })
+  </script>
+</body>
+</html>

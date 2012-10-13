@@ -1,0 +1,7 @@
+.mouse-select .highlighted {
+  outline: thin dotted rgb(179, 212, 253);
+}
+
+.mouse-select .selected {
+  outline: rgb(179, 212, 253) solid thin;
+}
