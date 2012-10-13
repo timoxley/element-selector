@@ -43,15 +43,22 @@ function MouseSelect(options) {
     ? options.selectedClass || null
     : 'selected'
 
-   this.selectEvent = options.hasOwnProperty('selectEvent')
+  this.selectEvent = options.hasOwnProperty('selectEvent')
     ? options.selectEvent || null
     : 'click'
+
+  this.enabled = options.hasOwnProperty('enabled')
+    ? !!options.enabled
+    : true
+
 
   this.highlighted = null
   this.highlight = highlight.bind(this)
   this.dehighlight = dehighlight.bind(this)
   this.select = select.bind(this)
   this.deselect = deselect.bind(this)
+  this.disable = disable.bind(this)
+  this.enable = enable.bind(this)
 
   bus.on('mouseover', this.highlight)
   bus.on('mouseout', this.dehighlight)
@@ -59,9 +66,20 @@ function MouseSelect(options) {
 
 MouseSelect.prototype = {}
 
+function disable() {
+  this.dehighlight()
+  this.deselect()
+  this.enabled = false
+}
+
+function enable() {
+  this.enabled = true
+}
+
 function highlight(el) {
+  if (!this.enabled) return
   bus.once(this.selectEvent, this.select)
-  if (matches(el, this.selector)) {
+  if (el && matches(el, this.selector)) {
     if (this.highlighted && this.highlighted !== el) this.dehighlight(this.highlighted)
     classes(el).add(this.highlightedClass)
     this.highlighted = el
@@ -70,16 +88,21 @@ function highlight(el) {
 }
 
 function dehighlight(el) {
-  bus.off(this.selectEvent, this.select)
-  classes(el).remove(this.highlightedClass)
-  this.emit('dehighlight', el)
-  this.highlighted = null
+  if (!this.enabled) return
+  el = el || this.highlighted
+  if (el && matches(el, this.selector)) {
+    bus.off(this.selectEvent, this.select)
+    classes(el).remove(this.highlightedClass)
+    this.highlighted = null
+    this.emit('dehighlight', el)
+  }
 }
 
 function select(el) {
-  if (this.selected) this.deselect(this.selected)
-  if (matches(el, this.selector)) {
-    this.dehighlight(el)
+  if (!this.enabled) return
+  if (this.selected) this.deselect()
+  if (el && matches(el, this.selector)) {
+    this.dehighlight()
     classes(el).add(this.selectedClass)
     this.selected = el
     this.emit('select', el)
@@ -87,7 +110,9 @@ function select(el) {
 }
 
 function deselect(el) {
-  if (matches(el, this.selector)) {
+  if (!this.enabled) return
+  el = el || this.selected
+  if (el && matches(el, this.selector)) {
     classes(el).remove(this.selectedClass)
     this.selected = null
     this.emit('deselect', el)

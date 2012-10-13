@@ -1,7 +1,7 @@
 {
   "name": "mouse-select",
   "repo": "timoxley/mouse-select-el",
-  "description": "Use mouse to select html elements",
+  "description": "Use mouse to select html elements.",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {

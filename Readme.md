@@ -1,9 +1,7 @@
 
 # mouse-select
 
-  Use mouse to highlight and select html elements
-
-
+  Use mouse to highlight and select html elements.
 
 ## Installation
 
@@ -18,6 +16,7 @@ var MouseSelect = require('mouse-select');
 var mouseSelect = MouseSelect();
 
 ```
+
 
 ## Options
   - [selector](#selector)
@@ -94,3 +93,35 @@ mouseSelect.once('dehighlight', function(el) {
 })
 
 ```
+
+## API
+
+  - [disable](#disable)
+  - [enable](#enable)
+
+<a name="disable" />
+### disable()
+Disables the mouseSelect instance. No more events will be fired, other
+than those to deselect/dehighlight the currently selected/highlighted
+elements.
+
+```
+  mouseSelect.disable()
+```
+
+<a name="enable" />
+### enable()
+Reenables a mouseSelect instance.
+
+```
+  mouseSelect.enable()
+```
+
+## Compatibility
+
+  Only tested in Chrome. Pull request welcome if you get it working in IE.
+
+
+## License
+
+[MIT](http://opensource.org/licenses/mit-license.php)
