@@ -2,7 +2,7 @@
   "name": "element-selector",
   "repo": "timoxley/element-selector",
   "description": "Select DOM elements with the mouse.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "keywords": [],
   "dependencies": {
     "component/classes": "*",

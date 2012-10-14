@@ -81,7 +81,10 @@ var elementSelector = ElementSelector({
 ## Events
 
 Events are fired whenever an element's selected or highlighted status
-changes.
+changes. Two arguments are passed to the callback: the element that was highlighted
+or selected, and the original mouse event that triggered the action (if
+it exists). The second event argument is supplied if you wish to
+prevent default actions or otherwise query the triggering event.
 
 Events will be one of the following:
 
@@ -97,7 +100,8 @@ ElementSelector's event API is inherited from
 
 ```js
 
-elementSelector.on('select', function(el) {
+elementSelector.on('select', function(el, event) {
+  event.preventDefault()
   console.log('element selected', el)
 })
 

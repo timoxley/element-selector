@@ -10,22 +10,22 @@ var initialize = function() {
   if (initialized) return
   initialized = true
   document.addEventListener('mouseover', function(e) {
-    bus.emit('mouseover', e.target)
+    bus.emit('mouseover', e.target, e)
   })
   document.addEventListener('mouseout', function(e) {
-    bus.emit('mouseout', e.target)
+    bus.emit('mouseout', e.target, e)
   })
   document.addEventListener('click', function(e) {
-    bus.emit('click', e.target)
+    bus.emit('click', e.target, e)
   })
   document.addEventListener('mouseup', function(e) {
-    bus.emit('mouseup', e.target)
+    bus.emit('mouseup', e.target, e)
   })
   document.addEventListener('mousedown', function(e) {
-    bus.emit('mousedown', e.target)
+    bus.emit('mousedown', e.target, e)
   })
   document.addEventListener('dblclick', function(e) {
-    bus.emit('dblclick', e.target)
+    bus.emit('dblclick', e.target, e)
   })
 }()
 
@@ -77,7 +77,6 @@ function ElementSelector(options) {
 ElementSelector.prototype = {}
 
 function disable() {
-  this.dehighlight()
   this.deselect()
   this.enabled = false
   return this
@@ -88,46 +87,47 @@ function enable() {
   return this
 }
 
-function highlight(el) {
+function highlight(el, e) {
   if (!this.enabled) return
   bus.once(this.selectEvent, this.select)
   if (el && matches(el, this.selector)) {
     if (this.highlighted && this.highlighted !== el) this.dehighlight(this.highlighted)
     classes(el).add(this.highlightedClass)
     this.highlighted = el
-    this.emit('highlight', el)
+    this.emit('highlight', el, e)
   }
 }
 
-function dehighlight(el) {
+function dehighlight(el, e) {
   if (!this.enabled) return
   el = el || this.highlighted
   if (el && matches(el, this.selector)) {
     bus.off(this.selectEvent, this.select)
     classes(el).remove(this.highlightedClass)
     this.highlighted = null
-    this.emit('dehighlight', el)
+    this.emit('dehighlight', el, e)
   }
 }
 
-function select(el) {
+function select(el, e) {
   if (!this.enabled) return
-  if (this.selected) this.deselect()
+  if (this.selected) this.deselect(null, e)
   if (el && matches(el, this.selector)) {
     this.dehighlight()
     classes(el).add(this.selectedClass)
     this.selected = el
-    this.emit('select', el)
+    this.emit('select', el, e)
   }
 }
 
-function deselect(el) {
+function deselect(el, e) {
   if (!this.enabled) return
   el = el || this.selected
   if (el && matches(el, this.selector)) {
+    this.dehighlight()
     classes(el).remove(this.selectedClass)
     this.selected = null
-    this.emit('deselect', el)
+    this.emit('deselect', el, e)
   }
 }
 

@@ -16,12 +16,19 @@
   <script>
     var ElementSelector = require('element-selector')
     var elementSelector = ElementSelector()
-    elementSelector.on('select', function(el) {
-      console.log('selected', el)
+    elementSelector.on('select', function(el, e) {
+      console.log('selected', el, e)
     })
-    elementSelector.on('deselect', function(el) {
-      console.log('deselected', el)
+    elementSelector.on('deselect', function(el, e) {
+      console.log('deselected', el, e)
     })
+    elementSelector.on('highlight', function(el, e) {
+      console.log('highlight', el, e)
+    })
+    elementSelector.on('dehighlight', function(el, e) {
+      console.log('dehighlight', el, e)
+    })
+
   </script>
 </body>
 </html>
