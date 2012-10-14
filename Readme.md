@@ -93,6 +93,7 @@ Events will be one of the following:
   - highlight
   - dehighlight
 
+
 ElementSelector's event API is inherited from
 [component/emitter](https://github.com/component/emitter).
 
