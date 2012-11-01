@@ -22,7 +22,7 @@ var elementSelector = ElementSelector();
   - [selectEvent](#selectEvent)
   - [selectedClass](#selectedClass)
   - [highlightedClass](#highlightedClass)
-  - [useStyluseDefaultStylese](#useDefaultStyles)
+  - [useDefaultStyles](#useDefaultStyles)
  
 <a name="selector" />
 ### selector
