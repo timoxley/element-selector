@@ -16,6 +16,7 @@ var elementSelector = ElementSelector();
 
 ```
 
+[Demo](http://timoxley.github.com/element-selector/examples/)
 
 ## Options
   - [selector](#selector)
