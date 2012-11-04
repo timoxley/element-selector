@@ -23,7 +23,7 @@ var elementSelector = ElementSelector();
   - [selectedClass](#selectedClass)
   - [highlightedClass](#highlightedClass)
   - [useDefaultStyles](#useDefaultStyles)
- 
+
 <a name="selector" />
 ### selector
 Only trigger select/highlight events on elements matching this selector.
@@ -36,7 +36,7 @@ var elementSelector = ElementSelector({
 ```
 
 <a name="selectEvent" />
-### selectEvent 
+### selectEvent
 Mouse event to trigger selection. Must be one of `click`, `dblclick`,
 `mouseup` or `mousedown`. Defaults to `click`
 ```js
@@ -49,7 +49,7 @@ var elementSelector = ElementSelector({
 <a name="selectedClass" />
 ### selectedClass
 ```js
-// elements will get class "editable" when they are highlighted 
+// elements will get class "editable" when they are highlighted
 var elementSelector = ElementSelector({
   highlightedClass: "editable"
 })
