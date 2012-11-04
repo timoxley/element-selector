@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>element-selector by timoxley</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>element-selector</h1>
+        <p>Use mouse to select elements on the screen </p>
+
+        <p class="view"><a href="https://github.com/timoxley/element-selector">View the Project on GitHub <small>timoxley/element-selector</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/timoxley/element-selector/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/timoxley/element-selector/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/timoxley/element-selector">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Element Selector</h1>
+
+<p>Select DOM elements with the mouse.</p>
+
+<h2>Installation</h2>
+
+<pre><code>$ component install timoxley/element-selector
+</code></pre>
+
+<h2>Example</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ElementSelector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'element-selector'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">elementSelector</span> <span class="o">=</span> <span class="nx">ElementSelector</span><span class="p">();</span>
+
+</pre></div>
+
+<h2>Options</h2>
+
+<ul>
+<li><a href="#selector">selector</a></li>
+<li><a href="#selectEvent">selectEvent</a></li>
+<li><a href="#selectedClass">selectedClass</a></li>
+<li><a href="#highlightedClass">highlightedClass</a></li>
+<li><a href="#useDefaultStyles">useDefaultStyles</a></li>
+</ul><p><a name="selector"></a></p>
+
+<h3>selector</h3>
+
+<p>Only trigger select/highlight events on elements matching this selector.
+Defaults to <code>body *</code>.</p>
+
+<div class="highlight"><pre><span class="c1">// Only trigger on paragraphs inside #content</span>
+<span class="kd">var</span> <span class="nx">elementSelector</span> <span class="o">=</span> <span class="nx">ElementSelector</span><span class="p">({</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="s2">"#content p"</span>
+<span class="p">})</span>
+</pre></div>
+
+<p><a name="selectEvent"></a></p>
+
+<h3>selectEvent</h3>
+
+<p>Mouse event to trigger selection. Must be one of <code>click</code>, <code>dblclick</code>,
+<code>mouseup</code> or <code>mousedown</code>. Defaults to <code>click</code></p>
+
+<div class="highlight"><pre><span class="c1">// Trigger on 'mousedown' instead of 'click'</span>
+<span class="kd">var</span> <span class="nx">elementSelector</span> <span class="o">=</span> <span class="nx">ElementSelector</span><span class="p">({</span>
+  <span class="nx">selectEvent</span><span class="o">:</span> <span class="s2">"mousedown"</span>
+<span class="p">})</span>
+</pre></div>
+
+<p><a name="selectedClass"></a></p>
+
+<h3>selectedClass</h3>
+
+<div class="highlight"><pre><span class="c1">// elements will get class "editable" when they are highlighted </span>
+<span class="kd">var</span> <span class="nx">elementSelector</span> <span class="o">=</span> <span class="nx">ElementSelector</span><span class="p">({</span>
+  <span class="nx">highlightedClass</span><span class="o">:</span> <span class="s2">"editable"</span>
+<span class="p">})</span>
+</pre></div>
+
+<p><a name="highlightedClass"></a></p>
+
+<h3>highlightedClass</h3>
+
+<div class="highlight"><pre><span class="c1">// elements will get class "glow" when they are highlighted</span>
+<span class="kd">var</span> <span class="nx">elementSelector</span> <span class="o">=</span> <span class="nx">ElementSelector</span><span class="p">({</span>
+  <span class="nx">highlightedClass</span><span class="o">:</span> <span class="s2">"glow"</span>
+<span class="p">})</span>
+</pre></div>
+
+<p><a name="useDefaultStyles"></a></p>
+
+<h3>useDefaultStyles</h3>
+
+<p>Disable this if you wish to disable the default styles.
+Adds <code>element-selector</code> class to <code>document.body</code> if <code>true</code>.
+Defaults to <code>true</code>.</p>
+
+<div class="highlight"><pre><span class="c1">// Disable default styles so you can</span>
+<span class="c1">// use custom .selected and .highlighted css.</span>
+<span class="kd">var</span> <span class="nx">elementSelector</span> <span class="o">=</span> <span class="nx">ElementSelector</span><span class="p">({</span>
+  <span class="nx">useDefaultStyles</span><span class="o">:</span> <span class="kc">false</span>
+<span class="p">})</span>
+</pre></div>
+
+<h2>Events</h2>
+
+<p>Events are fired whenever an element's selected or highlighted status
+changes. Two arguments are passed to the callback: the element that was highlighted
+or selected, and the original mouse event that triggered the action (if
+it exists). The second event argument is supplied if you wish to
+prevent default actions or otherwise query the triggering event.</p>
+
+<p>Events will be one of the following:</p>
+
+<ul>
+<li>select</li>
+<li>deselect</li>
+<li>highlight</li>
+<li>dehighlight</li>
+</ul><p>ElementSelector's event API is inherited from
+<a href="https://github.com/component/emitter">component/emitter</a>.</p>
+
+<h3>Example</h3>
+
+<div class="highlight"><pre>
+<span class="nx">elementSelector</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'element selected'</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">elementSelector</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">'dehighlight'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'element dehighlighted'</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span>
+<span class="p">})</span>
+
+</pre></div>
+
+<h2>API</h2>
+
+<ul>
+<li><a href="#disable">disable</a></li>
+<li><a href="#enable">enable</a></li>
+</ul><p><a name="disable"></a></p>
+
+<h3>disable()</h3>
+
+<p>Disables the elementSelector instance. No more events will be fired, other
+than those to deselect/dehighlight the currently selected/highlighted
+elements.</p>
+
+<pre><code>  elementSelector.disable()
+</code></pre>
+
+<p><a name="enable"></a></p>
+
+<h3>enable()</h3>
+
+<p>Reenables a elementSelector instance.</p>
+
+<pre><code>  elementSelector.enable()
+</code></pre>
+
+<h2>Compatibility</h2>
+
+<p>Only tested in Chrome. Pull request welcome if you get it working in IE.</p>
+
+<h2>License</h2>
+
+<p><a href="http://opensource.org/licenses/mit-license.php">MIT</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/timoxley">timoxley</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
