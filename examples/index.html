@@ -1,0 +1,34 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/build/build.css" type="text/css" />
+</head>
+<body>
+  <p>
+  Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Maecenas egestas ultrices magna, sed rutrum erat condimentum quis. Integer in faucibus urna.
+  </p>
+  <ul>
+    <li>Lorem</li>
+    <li>ipsum</li>
+    <li>dolor</li>
+    <li>sit</li>
+  </ul>
+  <script src="../../build/build.js"></script>
+  <script>
+    var ElementSelector = require('element-selector')
+    var elementSelector = ElementSelector()
+    elementSelector.on('select', function(el, e) {
+      console.log('selected', el, e)
+    })
+    elementSelector.on('deselect', function(el, e) {
+      console.log('deselected', el, e)
+    })
+    elementSelector.on('highlight', function(el, e) {
+      console.log('highlight', el, e)
+    })
+    elementSelector.on('dehighlight', function(el, e) {
+      console.log('dehighlight', el, e)
+    })
+
+  </script>
+</body>
+</html>
