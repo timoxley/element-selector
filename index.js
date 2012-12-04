@@ -2,7 +2,7 @@ var classes = require('classes')
 var matches = require('matches-selector')
 
 var Emitter = require('emitter')
-var bus = require('bus')
+var bus = new Emitter()
 
 var initialized = false
 
