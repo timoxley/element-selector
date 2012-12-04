@@ -12,10 +12,13 @@
     <li>dolor</li>
     <li>sit</li>
   </ul>
+  <h3>Can't Select This.</h3>
   <script src="../../build/build.js"></script>
   <script>
     var ElementSelector = require('element-selector')
-    var elementSelector = ElementSelector()
+    var elementSelector = ElementSelector({
+      invalidSelector: 'h3'
+    })
     elementSelector.on('select', function(el, e) {
       console.log('selected', el, e)
     })

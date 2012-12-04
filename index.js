@@ -38,6 +38,7 @@ module.exports.ElementSelector = ElementSelector
 function ElementSelector(options) {
   options = options || {}
   this.selector = options.selector || 'body *'
+  this.invalidSelector = options.invalidSelector || ''
 
   this.highlightedClass = options.hasOwnProperty('highlightedClass')
     ? options.highlightedClass || null
@@ -69,6 +70,7 @@ function ElementSelector(options) {
   this.deselect = deselect.bind(this)
   this.disable = disable.bind(this)
   this.enable = enable.bind(this)
+  this.matches = elMatches.bind(this)
 
   bus.on('mouseover', this.highlight)
   bus.on('mouseout', this.dehighlight)
@@ -88,9 +90,13 @@ function enable() {
   return this
 }
 
+function elMatches(el) {
+  return !! el && matches(el, this.selector) && !matches(el, this.invalidSelector)
+}
+
 function highlight(el, e) {
   if (!this.enabled) return
-  if (el && matches(el, this.selector)) {
+  if (this.matches(el)) {
     if (this.highlighted && this.highlighted !== el) this.dehighlight(this.highlighted)
     classes(el).add(this.highlightedClass)
     this.highlighted = el
@@ -101,7 +107,7 @@ function highlight(el, e) {
 function dehighlight(el, e) {
   if (!this.enabled) return
   el = el || this.highlighted
-  if (el && matches(el, this.selector)) {
+  if (this.matches(el)) {
     classes(el).remove(this.highlightedClass)
     this.highlighted = null
     this.emit('dehighlight', el, e)
@@ -111,7 +117,7 @@ function dehighlight(el, e) {
 function select(el, e) {
   if (!this.enabled) return
   if (this.selected) this.deselect(null, e)
-  if (el && matches(el, this.selector)) {
+  if (this.matches(el)) {
     this.dehighlight()
     classes(el).add(this.selectedClass)
     this.selected = el
@@ -122,7 +128,7 @@ function select(el, e) {
 function deselect(el, e) {
   if (!this.enabled) return
   el = el || this.selected
-  if (el && matches(el, this.selector)) {
+  if (this.matches(el)) {
     this.dehighlight()
     classes(el).remove(this.selectedClass)
     this.selected = null
