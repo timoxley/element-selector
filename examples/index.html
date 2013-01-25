@@ -7,7 +7,7 @@
   Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Maecenas egestas ultrices magna, sed rutrum erat condimentum quis. Integer in faucibus urna.
   </p>
   <ul>
-    <li>Lorem</li>
+    <li class='noSelect'>Lorem</li>
     <li>ipsum</li>
     <li>dolor</li>
     <li>sit</li>
@@ -17,7 +17,7 @@
   <script>
     var ElementSelector = require('element-selector')
     var elementSelector = ElementSelector({
-      invalidSelector: 'h3'
+      invalidSelector: 'h3, .noSelect'
     })
     elementSelector.on('select', function(el, e) {
       console.log('selected', el, e)
