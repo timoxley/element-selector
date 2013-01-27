@@ -7,16 +7,17 @@
   Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Maecenas egestas ultrices magna, sed rutrum erat condimentum quis. Integer in faucibus urna.
   </p>
   <ul>
-    <li class='noSelect'>Lorem</li>
+    <li class='noSelect'>Can't Select This.</li>
     <li>ipsum</li>
     <li>dolor</li>
     <li>sit</li>
   </ul>
-  <h3>Can't Select This.</h3>
+  <h3>Or this.</h3>
   <script src="../../build/build.js"></script>
   <script>
     var ElementSelector = require('element-selector')
     var elementSelector = ElementSelector({
+      selector: 'body *',
       invalidSelector: 'h3, .noSelect'
     })
     elementSelector.on('select', function(el, e) {

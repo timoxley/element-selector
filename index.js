@@ -91,7 +91,8 @@ function enable() {
 }
 
 function elMatches(el) {
-  return !! el && matches(el, this.selector) && this.invalidSelector && !matches(el, this.invalidSelector)
+  return !! el && matches(el, this.selector) &&
+      !(this.invalidSelector && matches(el, this.invalidSelector))
 }
 
 function highlight(el, e) {
