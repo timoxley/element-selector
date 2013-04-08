@@ -30,7 +30,7 @@ function ElementSelector(options) {
 
   this.prefixClass = options.prefixClass || DEFAULT_PREFIX_CLASS
 
-  this.useDefaultStyles = options.useDefaultStyles || DEFAULT_USE_STYLES
+  this.useDefaultStyles = options.useDefaultStyles != null ? options.useDefaultStyles : DEFAULT_USE_STYLES
 
   this.root = options.root || DEFAULT_ROOT_ELEMENT
 
