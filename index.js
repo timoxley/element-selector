@@ -51,17 +51,11 @@ function ElementSelector(options) {
     ? options.selectEvent || null
     : 'click'
 
-  this.enabled = options.hasOwnProperty('enabled')
-    ? !!options.enabled
-    : true
+  this.enabled = typeof options.enabled === "undefined"
+    ? options.enabled
+    : false
 
-  this.useDefaultStyles = options.hasOwnProperty('useDefaultStyles')
-    ? !!options.useDefaultStyles
-    : true
-
-  if (this.useDefaultStyles) {
-    classes(document.body).add('element-selector')
-  }
+  this.enable()
 
   this.highlighted = null
   this.highlight = highlight.bind(this)
@@ -86,7 +80,9 @@ function disable() {
 }
 
 function enable() {
-  this.enabled = true
+  if (!this.enabled) return false
+  if (!this.useDefaultStyles) return
+  classes(document.body).add('element-selector')
   return this
 }
 
