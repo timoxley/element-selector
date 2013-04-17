@@ -99,12 +99,11 @@ ElementSelector.prototype.select = function select(el, e) {
 ElementSelector.prototype.deselect = function deselect(el, e) {
   if (!this.enabled) return this
   el = el || this.selected
-  if (this.matches(el)) {
-    this.dehighlight()
-    classes(el).remove(this.selectedClass)
-    this.selected = null
-    this.emit('deselect', el, e)
-  }
+  this.dehighlight()
+  classes(el).remove(this.selectedClass)
+  this.selected = null
+  this.emit('deselect', el, e)
+  this.emit('deselect', el, e)
   return this
 }
 
