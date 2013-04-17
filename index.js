@@ -3,7 +3,7 @@
 var Emitter = require('emitter')
 var classes = require('classes')
 var matchesSelector = require('matches-selector')
-
+var debug = require('debug')('element-selector')
 var DEFAULT_SELECTOR = 'body *'
 var DEFAULT_INVALID_SELECTOR = ''
 var DEFAULT_HIGHLIGHTED_CLASS = 'highlighted'
@@ -53,12 +53,14 @@ ElementSelector.prototype.matches = function matches(el) {
 }
 
 ElementSelector.prototype.disable = function disable() {
+  debug('disable')
   this.enabled = false
   this.deselect()
   return this
 }
 
 ElementSelector.prototype.enable = function enable() {
+  debug('enable')
   this.enabled = true
   if (!this.useDefaultStyles) return this
   classes(this.root).add(this.prefixClass)
@@ -71,6 +73,7 @@ ElementSelector.prototype.highlight = function highlight(el, e) {
     if (this.highlighted && this.highlighted !== el) this.dehighlight(this.highlighted)
     classes(el).add(this.highlightedClass)
     this.highlighted = el
+    debug('highlight', el, e)
     this.emit('highlight', el, e)
   }
   return this
@@ -81,17 +84,19 @@ ElementSelector.prototype.dehighlight = function dehighlight() {
   var el = this.highlighted
   classes(el).remove(this.highlightedClass)
   this.highlighted = null
+  debug('dehighlight', el)
   this.emit('dehighlight', el)
   return this
 }
 
 ElementSelector.prototype.select = function select(el, e) {
   if (!this.enabled) return this
-  if (this.selected) this.deselect(null, e)
   if (this.matches(el)) {
+    this.deselect()
     this.dehighlight()
     classes(el).add(this.selectedClass)
     this.selected = el
+    debug('select', el, e)
     this.emit('select', el, e)
   }
 }
