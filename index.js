@@ -41,7 +41,6 @@ function ElementSelector(options) {
   this.highlighted = undefined
 
   bus.on('mouseover', this.highlight.bind(this))
-  bus.on('mouseout', this.dehighlight.bind(this))
   bus.on(this.selectEvent, this.select.bind(this))
 
   this.enabled ? this.enable() : this.disable()
@@ -77,14 +76,12 @@ ElementSelector.prototype.highlight = function highlight(el, e) {
   return this
 }
 
-ElementSelector.prototype.dehighlight = function dehighlight(el, e) {
-  if (!this.enabled) return this
-  el = el || this.highlighted
-  if (this.matches(el)) {
-    classes(el).remove(this.highlightedClass)
-    this.highlighted = null
-    this.emit('dehighlight', el, e)
-  }
+ElementSelector.prototype.dehighlight = function dehighlight() {
+  if (!this.enabled || !this.highlighted) return this
+  var el = this.highlighted
+  classes(el).remove(this.highlightedClass)
+  this.highlighted = null
+  this.emit('dehighlight', el)
   return this
 }
 
