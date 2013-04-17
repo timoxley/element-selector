@@ -56,6 +56,7 @@ ElementSelector.prototype.matches = function matches(el) {
 ElementSelector.prototype.disable = function disable() {
   debug('disable')
   this.deselect()
+  this.dehighlight()
   this.enabled = false
   return this
 }
