@@ -55,8 +55,8 @@ ElementSelector.prototype.matches = function matches(el) {
 
 ElementSelector.prototype.disable = function disable() {
   debug('disable')
-  this.enabled = false
   this.deselect()
+  this.enabled = false
   return this
 }
 
